@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create an account</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="javascript/script.js" defer></script>
+</head>
+
+<body>
+    <!-- navigation -->
+    <div id="navbar-container"></div>
+
+    <div>
+        <a href="./register.html"></a>
+        <a href="./login.html"></a>
+    </div>
+
+    <div class="register-container">
+        <p class="register-heading">Create An Account</p>
+        <div class="register-buttons">
+            <button class="facebook-btn">
+                <img src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/facebooks.png"
+                    alt="Facebook Logo" />
+                Register with Facebook
+            </button>
+            <button class="google-btn">
+                <img src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/googless.png"
+                    alt="Google Logo" />
+                Register with Google
+            </button>
+        </div>
+
+
+        <form class="register-form">
+            <p class="personal-information">PERSONAL INFORMATION</p>
+
+            <label class="register-label" for="username">Username Name</label>
+            <input id="username" name="username" type="text" placeholder="Enter your name" required />
+
+            <label class="register-label" for="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="Enter your email" required />
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Create a password" required />
+
+            <button id="submit" type="submit">Create Account</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="login.html">Sign In</a></p>
+    </div>
+
+    <!-- footer -->
+    <div id="footer-container"></div>
+</body>
+
+</html>
+<script>
+    let name = document.querySelector('#username')
+    let email = document.querySelector('#email')
+    let password = document.querySelector('#password')
+    let createAccount = document.querySelector('#submit')
+
+    let users = JSON.parse(localStorage.getItem('user')) || [];
+
+createAccount.addEventListener("click",(event) =>{
+    event.preventDefault();
+
+    if( !name.value || !email.value || !password.value){
+        alert("Please Fill All Fields!");
+        return;
+    }
+    if (!email.value.includes("@")) {
+        alert("Invalid Email");
+        return;
+    }
+    let isExistCustomer = users.some((user)=> user.email === email.value)
+      if(isExistCustomer){
+        alert("User already registered");
+        return;
+      }
+
+    let data={
+        name:name.value,
+        email:email.value,
+        password:password.value
+    }
+    users.push(data)
+    localStorage.setItem("user", JSON.stringify(users));
+
+    name.value="";
+    email.value="";
+    password.value="";
+    alert("Account Created Successfully!")
+})
+
+   
+   
+</script>

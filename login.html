@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome,please sign in</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="javascript/script.js" defer></script>
+
+</head>
+
+<body>
+    <!-- navigation -->
+    <div id="navbar-container">
+        </div>
+    <div>
+        <a href="./register.html"></a>
+        <a href="./login.html"></a>
+    </div>
+
+    <div class="login-container">
+        <p class="login-heading">Welcome, please sign in</p>
+
+        <div class="login-buttons">
+            <button class="login-facebook-btn">
+                <img src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/facebooks.png"
+                    alt="Facebook Logo" />
+                Sign in with Facebook
+            </button>
+            <button class="login-google-btn">
+                <img src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/googless.png"
+                    alt="Google Logo" />
+                Sign in with Google
+            </button>
+        </div>
+
+        <p class="customer">Existing Customers</p>
+        <hr class="login-hr" />
+
+        <div class="login-labels">
+            <p>Email Address</p>
+            <p class="input-label-password">Password</p>
+        </div>
+
+        <div class="login-input">
+            <input class="login-email"  type="email" required placeholder="Enter your email" required />
+            <input class="login-password" type="password"required placeholder="Enter your password" required />
+        </div>
+
+        <div class="login">
+            <button class="sign-in-btn">SIGN IN</button>
+            <p class="account-note">Forgot Your Password?</p>
+        </div>
+
+        <p class="customer">New Customers</p>
+        <hr />
+
+        <p class="account-note">
+            Creating an account has many benefits: check out faster, keep more than one address, track orders and more.
+        </p>
+        <a href="register.html" target="_blank"><button class="create-btn">CREATE AN ACCOUNT</button></a>
+
+
+    <!-- footer -->
+    <div id="footer-container"></div>
+</body>
+
+</html>
+<script>
+    const existingEmail = document.querySelector(".login-email")
+    const existingPassword = document.querySelector(".login-password")
+    const signIn = document.querySelector(".sign-in-btn")
+
+    signIn.addEventListener("click", (event)=>{
+        event.preventDefault();
+
+    let users= JSON.parse(localStorage.getItem("user")) || [];
+
+    let userByEmail = users.find((user=>
+        user.email === existingEmail.value
+    ))
+    if(!userByEmail){
+        alert("Email not registered,please registered first!")
+    }else{
+        if(userByEmail.password !== existingPassword.value){
+            alert("Incorrect Password");
+        }else{
+            localStorage.setItem("login",JSON.stringify({
+                status: true,
+                name: userByEmail.name,
+                email: userByEmail.email,
+                password: userByEmail.password
+        }));
+        alert("Login Successful!");
+        window.location.href = "index.html"
+        }
+    }
+});
+
+  
+
+</script>
