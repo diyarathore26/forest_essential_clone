@@ -1,0 +1,46 @@
+.main_products {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 28px;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0px;
+}
+.products-heading {
+  font-size: 30px;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  color: rgb(22, 22, 22);
+  text-align: center;
+  padding-top: 4%;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+.sort-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .select_sort {
+    padding: 8px 12px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+    
+    
+  }
+  
+  .select_sort:hover {
+    border-color: #aaa;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
+  

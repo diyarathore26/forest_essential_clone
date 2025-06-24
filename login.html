@@ -5,15 +5,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome,please sign in</title>
-<link rel="stylesheet" href="css/style.css">
-<script src="javascript/script.js" defer></script>
-
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/allproducts.css">
 </head>
 
 <body>
     <!-- navigation -->
     <div id="navbar-container">
+        <div class="navbar">
+            <div id="offer">FREE SHIPPING ON ALL ORDERS!</div>
+            <header id="head">
+                <div class="head-left">
+                    <img class="search" src="https://www.svgrepo.com/show/522443/search.svg" alt="" />
+                    <a href="#">STORE</a>
+                    <select>
+                        <option>₹ INR</option>
+                        <option>$ USD</option>
+                    </select>
+                </div>
+    
+                <div class="head-center">
+                    <a href="index.html">
+                        <img src="https://www.forestessentialsindia.com/blog/wp-content/uploads/2019/06/logo.png" alt="Logo"
+                            class="logo" />
+                    </a>
+                </div>
+    
+                <div class="head-right">
+                    <a href="#" id="logout-link" style="display: none">LOGOUT</a>
+                    <a href="login.html" id="account-link">ACCOUNT</a>
+                    <a href="#">SOUNDARYA CLUB</a>
+                    <a href="#">
+                        <img src="https://www.svgrepo.com/show/533028/bag-shopping.svg" alt="Cart" class="card-img" />
+                    </a>
+                </div>
+            </header>
+    
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="allProducts.html">Face</a></li>
+                    <li><a href="allProducts.html">Bath & Body</a></li>
+                    <li><a href="allProducts.html">Hair</a></li>
+                    <li><a href="allProducts.html">Makeup</a></li>
+                    <li><a href="allProducts.html">Gifting</a></li>
+                    <li><a href="allProducts.html">Travel Minis</a></li>
+                    <li><a href="allProducts.html">Mom & Baby</a></li>
+                    <li><a href="allProducts.html">Men</a></li>
+                    <li><a href="allProducts.html">Wellness</a></li>
+                    <li><a href="allProducts.html">Fragrance</a></li>
+                    <li><a href="allProducts.html">Exclusives</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                </ul>
+            </nav>
         </div>
+        </div>
+
     <div>
         <a href="./register.html"></a>
         <a href="./login.html"></a>
@@ -44,8 +90,8 @@
         </div>
 
         <div class="login-input">
-            <input class="login-email"  type="email" required placeholder="Enter your email" required />
-            <input class="login-password" type="password"required placeholder="Enter your password" required />
+            <input class="login-email" type="email" required placeholder="Enter your email" required />
+            <input class="login-password" type="password" required placeholder="Enter your password" required />
         </div>
 
         <div class="login">
@@ -60,44 +106,70 @@
             Creating an account has many benefits: check out faster, keep more than one address, track orders and more.
         </p>
         <a href="register.html" target="_blank"><button class="create-btn">CREATE AN ACCOUNT</button></a>
-
+    </div>
 
     <!-- footer -->
-    <div id="footer-container"></div>
+    <div id="footer-container">
+        <div class="footer">
+            <!-- stay up to date -->
+            <div class="up-to-date">
+                <h3>STAY UP TO DATE</h3>
+                <p>
+                    Enter your email address to receive updates on new product previews,
+                    ad promotions,<br />
+                    special offers and latest know-how on skincare routines.
+                </p>
+                <input class="footer-email" type="email" name="email" placeholder="Enter Your Email" />
+                <button>SUBSCRIBE</button>
+                <form class="input-wrapper">
+                    <input type="checkbox" id="privacy" name="privacy" required />
+                    <label for="privacy">
+                        By proceeding ahead, I agree and accept<a style="text-decoration: underline; color: black"
+                            href="privacy-policy.html" target="_blank">
+                            privacy policy
+                        </a>
+                        and
+                        <a style="text-decoration: underline; color: black" href="" target="_blank"
+                            rel="noopener noreferrer">terms</a>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <!-- footer -->
+        </div>
 </body>
-
-</html>
+<script src="javascript/fetchproducts.js"></script>
+<script src="javascript/script.js"></script>
 <script>
     const existingEmail = document.querySelector(".login-email")
     const existingPassword = document.querySelector(".login-password")
     const signIn = document.querySelector(".sign-in-btn")
 
-    signIn.addEventListener("click", (event)=>{
+    signIn.addEventListener("click", (event) => {
         event.preventDefault();
 
-    let users= JSON.parse(localStorage.getItem("user")) || [];
+        let users = JSON.parse(localStorage.getItem("user")) || [];
 
-    let userByEmail = users.find((user=>
-        user.email === existingEmail.value
-    ))
-    if(!userByEmail){
-        alert("Email not registered,please registered first!")
-    }else{
-        if(userByEmail.password !== existingPassword.value){
-            alert("Incorrect Password");
-        }else{
-            localStorage.setItem("login",JSON.stringify({
-                status: true,
-                name: userByEmail.name,
-                email: userByEmail.email,
-                password: userByEmail.password
-        }));
-        alert("Login Successful!");
-        window.location.href = "index.html"
+        let userByEmail = users.find((user =>
+            user.email === existingEmail.value
+        ))
+        if (!userByEmail) {
+            alert("Email not registered,please registered first!")
+        } else {
+            if (userByEmail.password !== existingPassword.value) {
+                alert("Incorrect Password");
+            } else {
+                localStorage.setItem("login", JSON.stringify({
+                    status: true,
+                    name: userByEmail.name,
+                    email: userByEmail.email,
+                    password: userByEmail.password
+                }));
+                alert("Login Successful!");
+                window.location.href = "index.html"
+            }
         }
-    }
-});
-
-  
-
+    });
 </script>
+
+</html>

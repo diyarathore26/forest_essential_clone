@@ -1,48 +1,3 @@
-//Fetching the HTML from partials/navbar.html and footer.html
-fetch("partials/navbar.html")
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById("navbar-container").innerHTML = data;
-  });
-fetch("partials/footer.html")
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById("footer-container").innerHTML = data;
-  });
-
-
-  
-// seasonal products api call main page
-api =
-  "https://raw.githubusercontent.com/diyarathore26/products-api/refs/heads/main/products.json";
-let productContainer = document.querySelector(".Seasonal");
-
-async function fetchProduct() {
-  try {
-    const request = await fetch(api);
-    let data = await request.json();
-    displayProduct(data.products);
-  } catch (error) {
-    console.log(error);
-  }
-}
-fetchProduct();
-function displayProduct(data) {
-  productContainer.innerHTML = data
-    .map((el, index) => {
-      if (index <= 7) {
-        return `<div class="product-item">
-          <img src=${el.image} />
-                <h2 class="productName">${el.title}</h2>
-                <h4>₹${el.price}</h4>
-                <p>${el.subtitle}</p>
-                <button>Add to Bag</button>
-            </div>`;
-      }
-    })
-    .join("");
-}
-
 // main page image auto and arrow slider
 let prevBtn = document.querySelector(".front-img-prev");
 let nextBtn = document.querySelector(".front-img-next");
@@ -54,22 +9,18 @@ let frontImgArr = [
   "https://img.forestessentialsindia.com/pub/media/mageplaza/bannerslider/banner/image/m/o/mogra__hp_banner_1_desktop.jpg",
 ];
 let currentIndex = 0;
-
 function displayImage() {
   frontImg.setAttribute("src", frontImgArr[currentIndex]);
 }
 displayImage();
-
 prevBtn.addEventListener("click", () => {
   currentIndex = currentIndex === 0 ? frontImgArr.length - 1 : currentIndex - 1;
   displayImage();
 });
-
 nextBtn.addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % frontImgArr.length;
   displayImage();
 });
-
 setInterval(() => {
   currentIndex = (currentIndex + 1) % frontImgArr.length;
   displayImage();
@@ -79,11 +30,9 @@ setInterval(() => {
 const container = document.querySelector(".products-container");
 const productLeftBtn = document.querySelector(".products-btn-left");
 const productRightBtn = document.querySelector(".products-btn-right");
-
 productLeftBtn.addEventListener("click", () => {
   container.scrollBy({ left: -300, behavior: "smooth" });
 });
-
 productRightBtn.addEventListener("click", () => {
   container.scrollBy({ left: 300, behavior: "smooth" });
 });
@@ -91,9 +40,7 @@ productRightBtn.addEventListener("click", () => {
 // main page shop concern slider
 const concernScroll = document.querySelector(".concern");
 const labels = document.querySelectorAll("label");
-
 labels[0].classList.add("active");
-
 labels.forEach((label, index) => {
   label.addEventListener("click", () => {
     // Remove active class from all

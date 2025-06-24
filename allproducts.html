@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/allproducts.css">
+</head>
+
+<body>
+    <div id="navbar-container">
+        <div class="navbar">
+            <div id="offer">FREE SHIPPING ON ALL ORDERS!</div>
+            <header id="head">
+                <div class="head-left">
+                    <img class="search" src="https://www.svgrepo.com/show/522443/search.svg" alt="">
+                    <a href="#">STORE</a>
+                    <select>
+                        <option>₹ INR</option>
+                        <option>$ USD</option>
+                    </select>
+                </div>
+
+                <div class="head-center">
+                    <a href="index.html">
+                        <img src="https://www.forestessentialsindia.com/blog/wp-content/uploads/2019/06/logo.png"
+                            alt="Logo" class="logo" />
+                    </a>
+                </div>
+
+                <div class="head-right">
+                    <a href="#" id="logout-link" style="display: none;">LOGOUT</a>
+                    <a href="login.html" id="account-link">ACCOUNT</a>
+                    <a href="#">SOUNDARYA CLUB</a>
+                    <a href="#">
+                        <img src="https://www.svgrepo.com/show/533028/bag-shopping.svg" alt="Cart" class="card-img" />
+                    </a>
+                </div>
+            </header>
+        </div>
+
+
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="allproducts.html">Face</a></li>
+                <li><a href="allproducts.html">Bath & Body</a></li>
+                <li><a href="allproducts.html">Hair</a></li>
+                <li><a href="allproducts.html">Makeup</a></li>
+                <li><a href="allproducts.html">Gifting</a></li>
+                <li><a href="allproducts.html">Travel Minis</a></li>
+                <li><a href="allproducts.html">Mom & Baby</a></li>
+                <li><a href="allproducts.html">Men</a></li>
+                <li><a href="allproducts.html">Wellness</a></li>
+                <li><a href="allproducts.html">Fragrance</a></li>
+                <li><a href="allproducts.html">Exclusives</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="category-img" style="display: none;">
+        <img src="" alt="">
+    </div>
+  
+    <div class="main_products">
+        <h1 class="products-heading"></h1>
+        <div class="sort-container">
+            <select class="select_sort">
+                <option value="">BESTSELLER</option>
+                <option value="asc">PRICE (LOWEST FIRST)</option>
+                <option value="desc">PRICE (HIGHEST FIRST)</option>
+            </select>    </div>
+        <div class="product-container"></div>
+    </div>
+
+
+    <div id="footer-container">
+        <div class="footer">
+            <!-- stay up to date -->
+            <div class="up-to-date">
+                <h3>STAY UP TO DATE</h3>
+                <p>Enter your email address to receive updates on new product previews, ad promotions,<br> special
+                    offers and
+                    latest
+                    know-how
+                    on skincare routines.</p>
+                <input class="footer-email" type="email">
+                <button>SUBSCRIBE</button>
+                <form class="input-wrapper">
+                    <input type="checkbox" id="privacy" name="privacy" required />
+                    <label for="privacy">
+                        By proceeding ahead, I agree and accept<a style="text-decoration: underline; color: black"
+                            href="privacy-policy.html" target="_blank">
+                            privacy policy
+                        </a>
+                        and
+                        <a style="text-decoration: underline; color: black" href="" target="_blank"
+                            rel="noopener noreferrer">terms</a>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <!-- footer -->
+    </div>
+</body>
+<script src="javascript/fetchproducts.js"></script>
+<script src="javascript/script.js"></script>
+<script>
+    let selectedCategory = sessionStorage.getItem("selectedCategory");
+    let categoryImage = {
+        "Face": "https://img.forestessentialsindia.com/pub/media/cms_page/csf/facial-care/Face_Cat-Desktop.jpg",
+        "Bath & Body":"https://img.forestessentialsindia.com/pub/media/catalog/category/Body_and_Bath_Cat_Desktop.jpg",
+        "Hair": "https://img.forestessentialsindia.com/pub/media/catalog/category/Hair_Cat_Desktop.jpg",
+        "Makeup":"https://img.forestessentialsindia.com/pub/media/makeup/2024/DesktopLandingpageBanner-1mar.jpg",
+        "Travel Minis":"https://img.forestessentialsindia.com/pub/media/catalog/category/Travel_Desktop.jpg",
+        "Mom & Baby":"https://img.forestessentialsindia.com/pub/media/catalog/category/Mother_Child_Desktop.jpg",
+        "Men":"https://img.forestessentialsindia.com/pub/media/catalog/category/7_Mens-Range-2880X840.jpg",
+        "Wellness":"https://img.forestessentialsindia.com/pub/media/catalog/category/Wellness-desktop.jpg",
+        "Fragrance":"https://img.forestessentialsindia.com/pub/media/catalog/category/Fragrances_Desktop.jpg"
+    }
+    let allCategories = document.querySelectorAll(".nav-list li a")
+    let productsContainer = document.querySelector(".product-container");
+    let sortSelect = document.querySelector(".select_sort");
+    let sortValue;
+
+    allCategories.forEach((category) => {
+        category.addEventListener("click", (e) => {
+            let selectedCategory = e.target.innerText;
+            sessionStorage.setItem("selectedCategory", selectedCategory)
+
+        })
+    })
+
+    sortSelect.addEventListener("change", (el) => {
+        sortValue = sortSelect.value;
+        getData()
+    })
+
+    document.addEventListener("DOMContentLoaded", () => {
+        if (selectedCategory) {
+            document.querySelector(".products-heading").innerText = selectedCategory;
+        }
+
+        if (selectedCategory) {
+            document.querySelector(".category-img").style.display = selectedCategory ? "flex" : "none";
+            document.querySelector(".category-img img").src = categoryImage[selectedCategory]
+        }
+    });
+
+    async function getData() {
+        let products = await fetchProducts()
+        let categorizedProducts = products.filter((el) => el.category == selectedCategory);
+        if (sortValue === "asc") {
+            categorizedProducts.sort((a, b) => a.price - b.price)
+        } else if (sortValue === "desc") {
+            categorizedProducts.sort((a, b) => b.price - a.price)
+        }
+        productsContainer.innerHTML = categorizedProducts.map((el, index) => {
+            console.log(categorizedProducts)
+            return `<div class="product-item">
+            <img src=${el.image} />
+            <h2>${el.title}</h2>
+            <h4>₹${el.price}</h4>
+            <p>${el.subtitle}</p>
+            <p>${el.ratings}</p>
+            <button>ADD TO CARD</button>
+            </div>`;
+        }).join("")
+    }
+    getData()
+</script>
+
+</html>

@@ -1,100 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create an account</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="javascript/script.js" defer></script>
-</head>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/allproducts.css">
+  </head>
 
-<body>
+  <body>
     <!-- navigation -->
-    <div id="navbar-container"></div>
+    <div id="navbar-container">
+      <div class="navbar">
+        <div id="offer">FREE SHIPPING ON ALL ORDERS!</div>
+        <header id="head">
+          <div class="head-left">
+            <img
+              class="search"
+              src="https://www.svgrepo.com/show/522443/search.svg"
+              alt=""
+            />
+            <a href="#">STORE</a>
+            <select>
+              <option>₹ INR</option>
+              <option>$ USD</option>
+            </select>
+          </div>
+
+          <div class="head-center">
+            <a href="index.html">
+              <img
+                src="https://www.forestessentialsindia.com/blog/wp-content/uploads/2019/06/logo.png"
+                alt="Logo"
+                class="logo"
+              />
+            </a>
+          </div>
+
+          <div class="head-right">
+            <a href="#" id="logout-link" style="display: none">LOGOUT</a>
+            <a href="login.html" id="account-link">ACCOUNT</a>
+            <a href="#">SOUNDARYA CLUB</a>
+            <a href="#">
+              <img
+                src="https://www.svgrepo.com/show/533028/bag-shopping.svg"
+                alt="Cart"
+                class="card-img"
+              />
+            </a>
+          </div>
+        </header>
+
+        <nav class="nav">
+          <ul class="nav-list">
+            <li><a href="allProducts.html">Face</a></li>
+            <li><a href="allProducts.html">Bath & Body</a></li>
+            <li><a href="allProducts.html">Hair</a></li>
+            <li><a href="allProducts.html">Makeup</a></li>
+            <li><a href="allProducts.html">Gifting</a></li>
+            <li><a href="allProducts.html">Travel Minis</a></li>
+            <li><a href="allProducts.html">Mom & Baby</a></li>
+            <li><a href="allProducts.html">Men</a></li>
+            <li><a href="allProducts.html">Wellness</a></li>
+            <li><a href="allProducts.html">Fragrance</a></li>
+            <li><a href="allProducts.html">Exclusives</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
 
     <div>
-        <a href="./register.html"></a>
-        <a href="./login.html"></a>
+      <a href="./register.html"></a>
+      <a href="./login.html"></a>
     </div>
 
     <div class="register-container">
-        <p class="register-heading">Create An Account</p>
-        <div class="register-buttons">
-            <button class="facebook-btn">
-                <img src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/facebooks.png"
-                    alt="Facebook Logo" />
-                Register with Facebook
-            </button>
-            <button class="google-btn">
-                <img src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/googless.png"
-                    alt="Google Logo" />
-                Register with Google
-            </button>
-        </div>
+      <p class="register-heading">Create An Account</p>
+      <div class="register-buttons">
+        <button class="facebook-btn">
+          <img
+            src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/facebooks.png"
+            alt="Facebook Logo"
+          />
+          Register with Facebook
+        </button>
+        <button class="google-btn">
+          <img
+            src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/googless.png"
+            alt="Google Logo"
+          />
+          Register with Google
+        </button>
+      </div>
 
+      <form class="register-form">
+        <p class="personal-information">PERSONAL INFORMATION</p>
 
-        <form class="register-form">
-            <p class="personal-information">PERSONAL INFORMATION</p>
+        <label class="register-label" for="username">Username Name</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Enter your name"
+          required
+        />
 
-            <label class="register-label" for="username">Username Name</label>
-            <input id="username" name="username" type="text" placeholder="Enter your name" required />
+        <label class="register-label" for="email">Email Address</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          required
+        />
 
-            <label class="register-label" for="email">Email Address</label>
-            <input id="email" name="email" type="email" placeholder="Enter your email" required />
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Create a password"
+          required
+        />
 
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" placeholder="Create a password" required />
-
-            <button id="submit" type="submit">Create Account</button>
-        </form>
-        <p class="login-link">Already have an account? <a href="login.html">Sign In</a></p>
+        <button id="submit" type="submit">Create Account</button>
+      </form>
+      <p class="login-link">
+        Already have an account? <a href="login.html">Sign In</a>
+      </p>
     </div>
 
     <!-- footer -->
-    <div id="footer-container"></div>
-</body>
+    <div id="footer-container">
+      <div class="footer">
+        <!-- stay up to date -->
+        <div class="up-to-date">
+          <h3>STAY UP TO DATE</h3>
+          <p>
+            Enter your email address to receive updates on new product previews,
+            ad promotions,<br />
+            special offers and latest know-how on skincare routines.
+          </p>
+          <input
+            class="footer-email"
+            type="email"
+            name="email"
+            placeholder="Enter Your Email"
+          />
+          <button>SUBSCRIBE</button>
+          <form class="input-wrapper">
+            <input type="checkbox" id="privacy" name="privacy" required />
+            <label for="privacy">
+              By proceeding ahead, I agree and accept<a
+                style="text-decoration: underline; color: black"
+                href="privacy-policy.html"
+                target="_blank"
+              >
+                privacy policy
+              </a>
+              and
+              <a
+                style="text-decoration: underline; color: black"
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                >terms</a
+              >
+            </label>
+          </form>
+        </div>
+      </div>
+      <!-- footer -->
+    </div>
+  </body>
 
-</html>
+<script src="javascript/fetchproducts.js"></script>
+<script src="javascript/script.js"></script>
 <script>
-    let name = document.querySelector('#username')
-    let email = document.querySelector('#email')
-    let password = document.querySelector('#password')
-    let createAccount = document.querySelector('#submit')
+  let name = document.querySelector("#username");
+  let email = document.querySelector("#email");
+  let password = document.querySelector("#password");
+  let createAccount = document.querySelector("#submit");
 
-    let users = JSON.parse(localStorage.getItem('user')) || [];
+  let users = JSON.parse(localStorage.getItem("user")) || [];
 
-createAccount.addEventListener("click",(event) =>{
+  createAccount.addEventListener("click", (event) => {
     event.preventDefault();
 
-    if( !name.value || !email.value || !password.value){
-        alert("Please Fill All Fields!");
-        return;
+    if (!name.value || !email.value || !password.value) {
+      alert("Please Fill All Fields!");
+      return;
     }
     if (!email.value.includes("@")) {
-        alert("Invalid Email");
-        return;
+      alert("Invalid Email");
+      return;
     }
-    let isExistCustomer = users.some((user)=> user.email === email.value)
-      if(isExistCustomer){
-        alert("User already registered");
-        return;
-      }
+    let isExistCustomer = users.some((user) => user.email === email.value);
+    if (isExistCustomer) {
+      alert("User already registered");
+      return;
+    }
 
-    let data={
-        name:name.value,
-        email:email.value,
-        password:password.value
-    }
-    users.push(data)
+    let data = {
+      name: name.value,
+      email: email.value,
+      password: password.value,
+    };
+    users.push(data);
     localStorage.setItem("user", JSON.stringify(users));
 
-    name.value="";
-    email.value="";
-    password.value="";
-    alert("Account Created Successfully!")
-})
-
-   
-   
+    name.value = "";
+    email.value = "";
+    password.value = "";
+    alert("Account Created Successfully!");
+  });
 </script>
+
+</html>
