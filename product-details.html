@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome,please sign in</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/allproducts.css">
+    <link rel="stylesheet" href="css/product-details.css">
 </head>
 
 <body>
@@ -23,14 +24,14 @@
                         <option>$ USD</option>
                     </select>
                 </div>
-    
+
                 <div class="head-center">
                     <a href="index.html">
-                        <img src="https://www.forestessentialsindia.com/blog/wp-content/uploads/2019/06/logo.png" alt="Logo"
-                            class="logo" />
+                        <img src="https://www.forestessentialsindia.com/blog/wp-content/uploads/2019/06/logo.png"
+                            alt="Logo" class="logo" />
                     </a>
                 </div>
-    
+
                 <div class="head-right">
                     <a href="#" id="logout-link" style="display: none">LOGOUT</a>
                     <a href="login.html" id="account-link">ACCOUNT</a>
@@ -40,7 +41,7 @@
                     </a>
                 </div>
             </header>
-    
+
             <nav class="nav">
                 <ul class="nav-list">
                     <li><a href="allProducts.html">Face</a></li>
@@ -58,55 +59,9 @@
                 </ul>
             </nav>
         </div>
-        </div>
-
-    <div>
-        <a href="./register.html"></a>
-        <a href="./login.html"></a>
     </div>
 
-    <div class="login-container">
-        <p class="login-heading">Welcome, please sign in</p>
-
-        <div class="login-buttons">
-            <button class="login-facebook-btn">
-                <img src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/facebooks.png"
-                    alt="Facebook Logo" />
-                Sign in with Facebook
-            </button>
-            <button class="login-google-btn">
-                <img src="https://img.forestessentialsindia.com/pub/media/sociallogin/default/googless.png"
-                    alt="Google Logo" />
-                Sign in with Google
-            </button>
-        </div>
-
-        <p class="customer">Existing Customers</p>
-        <hr class="login-hr" />
-
-        <div class="login-labels">
-            <p>Email Address</p>
-            <p class="input-label-password">Password</p>
-        </div>
-
-        <div class="login-input">
-            <input class="login-email" type="email" required placeholder="Enter your email" required />
-            <input class="login-password" type="password" required placeholder="Enter your password" required />
-        </div>
-
-        <div class="login">
-            <button class="sign-in-btn">SIGN IN</button>
-            <p class="account-note">Forgot Your Password?</p>
-        </div>
-
-        <p class="customer">New Customers</p>
-        <hr />
-
-        <p class="account-note">
-            Creating an account has many benefits: check out faster, keep more than one address, track orders and more.
-        </p>
-        <a href="register.html" target="_blank"><button class="create-btn">CREATE AN ACCOUNT</button></a>
-    </div>
+    <div id="single-product"></div>
 
     <!-- footer -->
     <div id="footer-container">
@@ -136,42 +91,70 @@
             </div>
         </div>
         <!-- footer -->
-        </div>
+    </div>
 </body>
+
 <script src="javascript/fetchproducts.js"></script>
-<script src="javascript/script.js"></script>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const existingEmail = document.querySelector(".login-email")
-    const existingPassword = document.querySelector(".login-password")
-    const signIn = document.querySelector(".sign-in-btn")
 
-    signIn.addEventListener("click", (event) => {
-        event.preventDefault();
 
-        let users = JSON.parse(localStorage.getItem("user")) || [];
+    async function showSingleProduct() {
+        let products = await fetchProducts();
+        let selectedId = localStorage.getItem("selectedProductId");
+        let product = products.find(p => p.id == selectedId);
 
-        let userByEmail = users.find((user =>
-            user.email === existingEmail.value
-        ))
-        if (!userByEmail) {
-            alert("Email not registered,please registered first!")
-        } else {
-            if (userByEmail.password !== existingPassword.value) {
-                alert("Incorrect Password");
-            } else {
-                localStorage.setItem("login", JSON.stringify({
-                    status: true,
-                    name: userByEmail.name,
-                    email: userByEmail.email,
-                    password: userByEmail.password
-                }));
-                alert("Login Successful!");
-                window.location.href = "index.html"
-            }
+        if (product) {
+            document.getElementById("single-product").innerHTML = `
+      <div class="product-detail">
+        <div class="product-image">
+    <img id="single-product-img" src="${product.image}" />
+  </div>
+  <div class="product-info">
+        <h2 id="single-product-tittle">${product.title}</h2>
+        <h4 id="single-product-price">₹${product.price}<span class="mrp"> (MRP INCLUSIVE OF ALL TAXES)</span></h4>
+         <div class="single-product-rating"><span class: RATING>Rating:</span>${(product.ratings)}
+    </div>
+        
+    <div class="product-actions">
+        <h4 class="quantity-head">QUANTITY<h4>
+         <div id="quantity-control">
+        
+                    <button id="decrease">-</button>
+                    <span id="quantity">1</span>
+                    <button id="increase">+</button>
+               
+                </div>
+        </div>
+        <div class=single-page-btns>
+        <button class="single-product-btn" >ADD TO BAG</button>
+        <button class="single-product-btn" >ADD TO CARD</button>
+      </div>
+      <div class="product-description">
+        <h4 class="desc-head">DESCRIPTION<h4>
+         <p id="single-product-subtitle">${product.subtitle}</p></div>
+      </div>
+      
+      </div>
+    `
+
+            let initial_Quantity = 1;
+            const quantity = document.getElementById("quantity");
+            document.getElementById("increase").addEventListener("click", () => {
+                initial_Quantity++;
+                quantity.textContent = initial_Quantity;
+            });
+            document.getElementById("decrease").addEventListener("click", () => {
+                if (initial_Quantity > 1) {
+                    initial_Quantity--;
+                    quantity.textContent = initial_Quantity;
+                }
+            });
+
         }
-    });
-})
+    }
+
+    showSingleProduct();
 </script>
 
 </html>

@@ -106,7 +106,7 @@
     </div>
 </body>
 <script src="javascript/fetchproducts.js"></script>
-<script src="javascript/script.js"></script>
+
 <script>
     let selectedCategory = sessionStorage.getItem("selectedCategory");
     let categoryImage = {
@@ -158,18 +158,26 @@
             categorizedProducts.sort((a, b) => b.price - a.price)
         }
         productsContainer.innerHTML = categorizedProducts.map((el, index) => {
-            console.log(categorizedProducts)
-            return `<div class="product-item">
+            //console.log(categorizedProducts)
+            return `<div class="product-item" onclick="showProduct(${el.id})">
             <img src=${el.image} />
             <h2>${el.title}</h2>
             <h4>₹${el.price}</h4>
             <p>${el.subtitle}</p>
             <p>${el.ratings}</p>
-            <button>ADD TO CARD</button>
+            <button class="product-btn">ADD TO CARD</button>
             </div>`;
         }).join("")
     }
     getData()
+
+    function showProduct(id) {
+        console.log(`Clicked product ID: ${id}`);
+            localStorage.setItem("selectedProductId", id);
+            alert(`Clicked product ID: ${id}`);
+            window.location.href = "product-details.html";  
+        }
+
 </script>
 
 </html>

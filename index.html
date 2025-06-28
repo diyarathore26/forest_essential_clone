@@ -7,6 +7,7 @@
     <title>Forest Essentials</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/allproducts.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
@@ -268,6 +269,8 @@
                 </div>
             </div>
             <!-- footer -->
+           
+              
         </div>
         
 </body>
@@ -278,17 +281,22 @@
         let allProducts = await fetchProducts();
         productContainer.innerHTML = allProducts.map((el, i) => {
             if (i <= 7) {
-                return `<div class="product-item">
+                return `<div class="product-item" onclick="showProduct(${el.id})">
             <img src=${el.image} />
             <h2>${el.title}</h2>
             <h4>₹${el.price}</h4>
             <p>${el.subtitle}</p>
-            <button>ADD TO CARD</button>
+            <button class="product-btn">ADD TO CARD</button>
             </div>`;
             }
         }).join("")
     }
     displayProducts();
+
+        function showProduct(id) {
+            localStorage.setItem("selectedProductId", id);
+            window.location.href = "product-details.html";  
+        }
 
 </script>
 </html>

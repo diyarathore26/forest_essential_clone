@@ -78,25 +78,3 @@ logoutLink.addEventListener("click", () => {
   window.location.href = "login.html";
 });
 
-//product if login and not login
-document.querySelectorAll(".product-item button").forEach((button) => {
-  button.addEventListener("click", () => {
-    let loginData = JSON.parse(localStorage.getItem("login"));
-
-    if (loginData && loginData.status === true) {
-      let product_name =
-        button.parentElement.querySelector(".productName").innerText;
-
-      // Save to cart
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.push({ name: product_name });
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      // Show alert message
-      alert(`You added ${product_name} to your bag. View Bag.`);
-    } else {
-      alert("Please login first!");
-      window.location.href = "login.html";
-    }
-  });
-});
