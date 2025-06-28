@@ -72,21 +72,21 @@ Products are dynamically fetched from this JSON file:
 📂 **Products API GitHub Repo:** [diyarathore26/products-api](https://github.com/diyarathore26/products-api)
 
 ---
-⚡ How to Run Locally
+
+## ⚡ How to Run Locally
 1️⃣ Clone the repository
 
-bash
-Copy
-Edit
 git clone https://github.com/diyarathore26/forest_essential_clone.git
 2️⃣ Open index.html in your browser (or use a local server e.g. Live Server extension)
+
+---
 
 ⚠ Disclaimer
 -This project is for educational purposes only.
 -It is not affiliated with or endorsed by Forest Essentials.
 
+---
+
 🙌 Acknowledgments
--Official Forest Essentials website (for design reference)
-
--Open source community & web dev resources
-
+Official Forest Essentials website (for design reference)
+Open source community & web dev resources
